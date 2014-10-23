@@ -1,0 +1,51 @@
+[(#REM) <-- Plugin esox : Tout pour Esox Diving "Plongez ailleurs" pour Spip 3.0
+ * Licence GPL (c) 2014-2014 Jean Remond
+ * Essai de fonctionnement du CVT mono-etape.
+ * ----------------------------------------------
+ * Ce formulaire va permettre de realiser des tests.
+ * Saisie : Tester des saisies au moyen d’une boucle.
+ * ----------------------------------------------
+@TODO :
+
+Fait :
+JR-02/08/2014-Générer des saisies au moyen d’une boucle.
+		==> http://contrib.spip.net/Doc-Saisies-complementaire#predefinie
+JR-11/08/2014-Creation du squelette pour faire des essais.
+-->] 
+
+<div class="formulaire_spip formulaire_#FORM formulaire_#FORM  formulaire_#FORM_#ENV{_etape}">
+	<p>#NOM_SITE_SPIP </p>
+        <h3>#FORM - Générer des saisies au moyen d’une boucle </h3>
+
+	<p>DEBUG esox JR : formulaires/monoetape.html - div - Pt05 - </p>
+	[<pre>(#ENV**|unserialize|print_r{1})</pre>]
+	<p>Fin DEBUG esox JR : formulaires/monoetape.html - div - Pt05 - </p>
+
+		[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+		[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+		[(#ENV{editable})
+		<form method='post' action='#ENV{action}'><div>
+			[(#REM) les hidden qui declencheront le service du formulaire parametre : url d'action ]
+			#ACTION_FORMULAIRE{#ENV{action},#FORM}
+ 
+ 	<p>DEBUG esox JR : formulaires/monoetape.html - div - Pt15 - </p>
+	[<pre>(#ENV**|unserialize|print_r{1})</pre>]
+	<p>FIN DEBUG esox JR : formulaires/monoetape.html - div - Pt15 - </p>
+
+     
+    <B_saisies>
+    Etes-vous amateur des fromages suivants ?
+    <BOUCLE_saisies(DATA){liste camembert,mimolette,roquefort,cheddar}>
+    #SAISIE*{oui_non, #VALEUR, label=#VALEUR}
+    </BOUCLE_saisies>
+
+	<p>DEBUG esox JR : formulaires/monoetape.html - div - Pt99 - </p>
+	[<pre>(#ENV**|unserialize|print_r{1})</pre>]
+	<p>FIN DEBUG esox JR : formulaires/monoetape.html - div - Pt99 - </p>
+
+			<p class="boutons">
+ 				<input type="submit" class="submit" value="<:pass_ok:>" />
+ 			</p>
+		</div></form>
+		]
+</div>

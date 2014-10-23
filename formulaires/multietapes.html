@@ -1,0 +1,49 @@
+[(#REM) <-- Plugin esox : Tout pour Esox Diving "Plongez ailleurs" pour Spip 3.0
+ * Licence GPL (c) 2014-2014 Jean Remond
+ * Essai de fonctionnement du CVT multi-etapes.
+ * ----------------------------------------------
+ * Ce formulaire va permettre l'inscription libre (de visiteurs non signes) a l'evenement.
+ * Les donnees inscriptions sont gerees dans 2 tables "evenements_bbinscripteurs" et "evenements_bbparticipants"
+ * Etape 1/2 : Presentez-vous => Mail.
+ * ----------------------------------------------
+@TODO :
+
+Fait :
+JR-04/08/2014-Codage affichage variables environnement.
+JR-02/08/2014-Mettre en forme le formulaire multi-etapes.
+		Le formulaire est compose de 2 etapes suivant 'Formulaires CVT en plusieurs pages'
+		==> http://www.spip.net/fr_article5386.html
+JR-02/08/2014-Creation du squelette pour permettre les inscriptions libres.
+-->] 
+
+<div class="formulaire_spip formulaire_#FORM formulaire_#FORM  formulaire_#FORM_#ENV{_etape}">
+	<p>#NOM_SITE_SPIP </p>
+        <h3>#FORM - Multi-etapes  #ENV{_etape} / #ENV{_etapes} : indiquez votre email</h3>
+
+	<p>DEBUG esox JR : formulaires/multietapes.html - div - Pt05 - </p>
+	[<pre>(#ENV**|unserialize|print_r{1})</pre>]
+	<p>DEBUG esox JR : formulaires/multietapes.html - div - Fin Pt05 - </p>
+
+		[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV*{message_ok})</p>]
+		[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+		[(#ENV{editable})
+		<form method='post' action='#ENV{action}'><div>
+			[(#REM) les hidden qui declencheront le service du formulaire parametre : url d'action ]
+			#ACTION_FORMULAIRE{#ENV{action},#FORM}
+     
+			<!-- Ici les saisies de l'étape 1, directement en HTML.
+				Elles pourraient aussi être générées par le plugin SAISIES  -->
+			<label>Votre titre</label>
+			<input type='text' name='titre_toto' value='#ENV{titre_toto}' />              
+ 	       [<span class='erreur'>(#ENV**{erreurs}|table_valeur{titre_toto})</span>]
+			<br />
+			<label>Votre email</label>
+ 			<input type='text' name='email' value='#ENV{email}' />              
+ 	       [<span class='erreur'>(#ENV**{erreurs}|table_valeur{email})</span>]
+
+			<p class="boutons">
+ 				<input type="submit" class="submit" value="<:pass_ok:>" />
+ 			</p>
+		</div></form>
+		]
+</div>

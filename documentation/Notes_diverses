@@ -33,7 +33,7 @@ Debug html : visualiser les variables d'environnement ou les infos session sur l
 	<p>DEBUG esox JR : Fichier - Fonction - Pt02(repère) - </p>
 	[<pre>(#ENV**|unserialize|print_r{1})</pre>]
 	[<pre>(#SESSION*|unserialize|var_export{1})</pre>]
-	<pre>(#GET{l_id_evinscripteur}|foreach)</pre>]
+	[<pre>(#GET{l_id_evinscripteur}|foreach)</pre>]
 	<p>FIN DEBUG esox JR : Fichier - Fonction - Pt02(repère) - </p>
 	
 

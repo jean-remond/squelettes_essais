@@ -29,12 +29,25 @@ Debug php : loguer un statut dans le log du plugin :
 	esox_log("FIN $debug1.", true);
 
 Debug html : visualiser les variables d'environnement ou les infos session sur la page
+	Avec SPIP 3
+
+	#FOREACH n’est plus disponible car il est avantageusement remplacé par la Boucle DATA.
+
+	Pour boucler des choses il faut utiliser les boucles DATA
+	<BOUCLE_for(DATA){source tableau,#LE_TABLEAU}>
+	#CLE / #VALEUR
+	</BOUCLE_for>
+
+Si c’est juste pour afficher le contenu de #ENV ou #CONFIG, il est aussi possible d’utiliser :
 
 	<p>DEBUG esox JR : Fichier - Fonction - Pt02(repère) - </p>
+	[<pre>(#CONFIG**|unserialize|print_r{1})</pre>] 
 	[<pre>(#ENV**|unserialize|print_r{1})</pre>]
 	[<pre>(#SESSION*|unserialize|var_export{1})</pre>]
 	[<pre>(#GET{l_id_evinscripteur}|foreach)</pre>]
 	<p>FIN DEBUG esox JR : Fichier - Fonction - Pt02(repère) - </p>
+	
+	
 	
 
 HTML :

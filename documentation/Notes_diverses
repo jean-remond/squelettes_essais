@@ -28,6 +28,29 @@ Debug php : loguer un statut dans le log du plugin :
 	...
 	esox_log("FIN $debug1.", true);
 
+	$debug1= "DEBUG dpplugin JR : dpplug_fonctions mailsubscribers_synchro_list_newsletter_adherents - Pt10 - ";
+	dpplug_log("$debug1.", true);
+	$liste_adh_auteurs = sql_allfetsel('ca.id_auteur', $adhfrom, $adhwhere, $adhgroupby, $adhorderby, $adhlimit);
+	if(is_array($adhselect)){
+		dpplug_log("adhselect=", true);
+		$debug2 = implode(', ',$adhselect);
+		dpplug_log("$debug2.", true);
+	}
+	if(is_array($adhfrom)){
+		dpplug_log("adhfrom=", true);
+		$debug2 = implode(', ',$adhfrom);
+		dpplug_log("$debug2.", true);
+	}
+	if(is_array($dpwhere)){
+		dpplug_log("dpwhere=", true);
+		$debug2 = implode(', ',$dpwhere);
+		dpplug_log("$debug2.", true);
+	}else{
+		dpplug_log("dpwhere=$dpwhere.", true);
+	}
+	dpplug_log("$debug1 FIN.", true);
+
+
 Debug html : visualiser les variables d'environnement ou les infos session sur la page
 	Avec SPIP 3
 

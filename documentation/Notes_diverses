@@ -14,7 +14,7 @@ Debug php : visualiser des variables directement sur la page
 	echo "<br />", $debug1;
 	// une variable
 	echo "id_evenement=", $id_evenement, "<br />";
-	// un tableau (array)
+	// un tableau (array meme complexe)
 	echo "valeurs= <br />"; var_dump($valeurs); echo ".<br />";
 	// un champ de formulaire
 	echo "_id_mailsubscriber= <br />", _request('_id_mailsubscriber'), ".<br />";
@@ -31,16 +31,6 @@ Debug php : loguer un statut dans le log du plugin :
 	$debug1= "DEBUG dpplugin JR : dpplug_fonctions mailsubscribers_synchro_list_newsletter_adherents - Pt10 - ";
 	dpplug_log("$debug1.", true);
 	$liste_adh_auteurs = sql_allfetsel('ca.id_auteur', $adhfrom, $adhwhere, $adhgroupby, $adhorderby, $adhlimit);
-	if(is_array($adhselect)){
-		dpplug_log("adhselect=", true);
-		$debug2 = implode(', ',$adhselect);
-		dpplug_log("$debug2.", true);
-	}
-	if(is_array($adhfrom)){
-		dpplug_log("adhfrom=", true);
-		$debug2 = implode(', ',$adhfrom);
-		dpplug_log("$debug2.", true);
-	}
 	if(is_array($dpwhere)){
 		dpplug_log("dpwhere=", true);
 		$debug2 = implode(', ',$dpwhere);
@@ -48,6 +38,10 @@ Debug php : loguer un statut dans le log du plugin :
 	}else{
 		dpplug_log("dpwhere=$dpwhere.", true);
 	}
+	echo "qui= <br />"; var_dump($qui); echo ".<br />";
+	$debug2= $qui['id_auteur'];
+	adhclub_log("qui= $debug2", true);
+	
 	dpplug_log("$debug1 FIN.", true);
 
 
